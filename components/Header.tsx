@@ -1,10 +1,10 @@
 "use client";
 
 import { Gem } from "lucide-react";
-import { eventConfig } from "@/config/event";
+import type { EventConfig } from "@/config/types";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 
-export function Header() {
+export function Header({ config }: { config: EventConfig }) {
   const { hidden, scrolled } = useScrollDirection();
 
   return (
@@ -21,7 +21,7 @@ export function Header() {
         >
           <Gem className="shrink-0 text-primary" size={20} aria-hidden="true" />
           <span className="truncate whitespace-nowrap font-display text-label-md font-bold tracking-tight text-primary md:text-headline-md">
-            {eventConfig.nav.brandName}
+            {config.nav.brandName}
           </span>
         </a>
         <a
@@ -29,7 +29,7 @@ export function Header() {
           className="shrink-0 whitespace-nowrap rounded-full bg-primary px-4 py-2 text-label-sm text-on-primary transition-all hover:bg-primary-container active:scale-95 md:px-6 md:py-2 md:text-label-md"
           aria-label="참가 신청 섹션으로 이동"
         >
-          {eventConfig.ctaLabel}
+          {config.ctaLabel}
         </a>
       </nav>
     </header>

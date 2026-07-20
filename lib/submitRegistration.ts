@@ -5,16 +5,13 @@ export type SubmitRegistrationResult = {
   message?: string;
 };
 
-// Google Apps Script Web App URL. 값이 없으면 .env.local에 설정이 필요합니다.
-// (google-apps-script/README.md 참고)
-const GAS_WEB_APP_URL = process.env.NEXT_PUBLIC_GAS_WEB_APP_URL;
-
 export async function submitRegistration(
   values: RegistrationFormValues,
+  gasWebAppUrl: string | undefined,
 ): Promise<SubmitRegistrationResult> {
-  if (!GAS_WEB_APP_URL) {
+  if (!gasWebAppUrl) {
     console.error(
-      "NEXT_PUBLIC_GAS_WEB_APP_URL이 설정되지 않았습니다. .env.local을 확인해주세요.",
+      "이 행사의 GAS Web App URL이 설정되지 않았습니다. .env.local과 config/events의 gasWebAppUrl을 확인해주세요.",
     );
     return { success: false };
   }
@@ -30,7 +27,7 @@ export async function submitRegistration(
     // Content-Type을 text/plain으로 보내야 브라우저가 CORS preflight(OPTIONS)를
     // 생략합니다. Apps Script 웹앱은 OPTIONS 요청을 기본적으로 처리하지 않으므로,
     // application/json을 쓰면 프리플라이트에서 요청이 막힙니다.
-    const response = await fetch(GAS_WEB_APP_URL, {
+    const response = await fetch(gasWebAppUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),

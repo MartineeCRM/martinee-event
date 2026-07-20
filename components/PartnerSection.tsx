@@ -1,10 +1,10 @@
-import { eventConfig } from "@/config/event";
+import type { EventConfig } from "@/config/types";
 import { MotionWrapper } from "./MotionWrapper";
 
 // TODO: 실제 로고 제공 시 /public/logos/ 에 추가하고 아래 placeholder div를
 // next/image(<Image src={logo.logoUrl} alt={logo.name} />)로 교체
-export function PartnerSection() {
-  const { partners } = eventConfig;
+export function PartnerSection({ config }: { config: EventConfig }) {
+  const { partners } = config;
 
   return (
     <section className="bg-background-alt py-16 md:py-24">

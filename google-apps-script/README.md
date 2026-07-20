@@ -2,6 +2,8 @@
 
 참가 신청 폼 데이터를 Google Spreadsheet에 저장하기 위한 배포 절차입니다. **Google 계정 접근이 필요한 단계이므로 아래 과정은 직접 수행해야 합니다.**
 
+이 프로젝트는 여러 행사를 한 저장소에서 관리합니다. **행사마다 별도의 스프레드시트/Apps Script 배포가 필요합니다** — 아래 절차를 행사 하나당 한 번씩 반복하세요.
+
 ## 1. 스프레드시트 준비
 
 1. 새 Google Spreadsheet를 만듭니다.
@@ -20,13 +22,13 @@
 
 ## 3. 프론트엔드 연결
 
-프로젝트 루트의 `.env.local` 파일에 아래와 같이 추가합니다 (`.env.local.example` 참고):
+프로젝트 루트의 `.env.local` 파일에, 행사별로 이름이 다른 환경변수로 추가합니다 (`.env.local.example` 참고). 예를 들어 Samsung Executive Dinner라면:
 
 ```
-NEXT_PUBLIC_GAS_WEB_APP_URL=YOUR_GAS_WEB_APP_URL_HERE
+NEXT_PUBLIC_GAS_WEB_APP_URL_SAMSUNG_EXECUTIVE_DINNER=YOUR_GAS_WEB_APP_URL_HERE
 ```
 
-실제 배포 URL을 프론트엔드 코드에 직접 하드코딩하지 마세요.
+그리고 해당 행사의 `config/events/<행사>.ts` 파일에서 `gasWebAppUrl: process.env.NEXT_PUBLIC_GAS_WEB_APP_URL_<행사슬러그>`로 참조되어 있는지 확인하세요 (새 행사를 추가할 때 직접 이 줄을 넣어야 합니다). 실제 배포 URL을 프론트엔드 코드에 직접 하드코딩하지 마세요.
 
 ## 4. 동작 확인
 

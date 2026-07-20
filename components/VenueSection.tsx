@@ -2,14 +2,14 @@
 
 import { ChevronLeft, ChevronRight, ImageOff, MapPin } from "lucide-react";
 import { useRef } from "react";
-import { eventConfig } from "@/config/event";
+import type { EventConfig } from "@/config/types";
 import { MotionWrapper } from "./MotionWrapper";
 
 // TODO: 실제 장소 이미지 제공 시 아래 그라디언트 슬라이드를 다음으로 교체:
 // <Image src="/images/venue/1.jpg" alt="행사 장소" fill className="object-cover" />
-export function VenueSection() {
+export function VenueSection({ config }: { config: EventConfig }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const { venue } = eventConfig;
+  const { venue } = config;
 
   function scrollByAmount(direction: 1 | -1) {
     const el = scrollerRef.current;

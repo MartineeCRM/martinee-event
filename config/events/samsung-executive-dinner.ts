@@ -1,5 +1,7 @@
-// 행사 정보를 한 곳에서 관리합니다. 다른 VIP 행사에 재사용할 때는 이 파일만 교체하면 됩니다.
+import type { EventConfig } from "../types";
 
+// 행사 정보를 한 곳에서 관리합니다. 새 행사를 추가할 때는 이 파일을 복제해서
+// config/events/ 아래에 새로 만들고, app/ 아래 같은 이름의 라우트를 추가하면 됩니다.
 export const eventConfig = {
   title: "Executive Dinner for SAMSUNG",
   invitationLabel: "삼성 그룹 프라이빗 초청 행사",
@@ -92,7 +94,7 @@ export const eventConfig = {
     address: "행사 장소는 참석 확정자에 한해 별도 안내드립니다.",
     description:
       "프라이빗한 대화에 어울리는 프리미엄 공간에서 진행됩니다. 자세한 장소는 참석 확정 후 개별 안내드립니다.",
-    mapUrl: null as string | null,
+    mapUrl: null,
     // TODO: 실제 장소 이미지 제공 시 /public/images/venue/ 에 추가하고 아래 슬롯 수만큼 채움
     imagePlaceholderCount: 3,
   },
@@ -100,8 +102,8 @@ export const eventConfig = {
   partners: {
     // TODO: 실제 로고 제공 시 /public/logos/ 에 추가 (martinee.svg, amplitude.svg 등)
     logos: [
-      { name: "Martinee", logoUrl: null as string | null },
-      { name: "Amplitude", logoUrl: null as string | null },
+      { name: "Martinee", logoUrl: null },
+      { name: "Amplitude", logoUrl: null },
     ],
   },
 
@@ -115,6 +117,9 @@ export const eventConfig = {
     errorMessage: "신청 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
   },
 
+  // 이 행사 전용 Google Apps Script Web App URL (google-apps-script/README.md 참고)
+  gasWebAppUrl: process.env.NEXT_PUBLIC_GAS_WEB_APP_URL_SAMSUNG_EXECUTIVE_DINNER,
+
   footer: {
     copyright: "© 2026 Martinee. All rights reserved.",
     privacyPolicyUrl: "https://martinee.notion.site/7cab6d3779c546fc801f79415646c03c",
@@ -127,6 +132,4 @@ export const eventConfig = {
     ogDescription:
       "삼성 그룹을 위한 프라이빗 인사이트 세션. AI 시대의 데이터 활용과 제품 인텔리전스 전략을 함께 논의합니다.",
   },
-} as const;
-
-export type EventConfig = typeof eventConfig;
+} satisfies EventConfig;

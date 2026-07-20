@@ -1,11 +1,11 @@
 import { Mic, Sparkles, UtensilsCrossed, Users, Wine } from "lucide-react";
-import { eventConfig } from "@/config/event";
+import type { EventConfig } from "@/config/types";
 import { MotionWrapper } from "./MotionWrapper";
 import { SectionTitle } from "./SectionTitle";
 
 const ICONS = [Wine, Sparkles, Mic, UtensilsCrossed, Users];
 
-export function AgendaSection() {
+export function AgendaSection({ config }: { config: EventConfig }) {
   return (
     <section className="bg-background py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-[20px] md:px-[64px]">
@@ -15,7 +15,7 @@ export function AgendaSection() {
         />
 
         <div className="flex flex-col divide-y divide-outline-variant/20 overflow-hidden rounded-xl border border-outline-variant/20">
-          {eventConfig.agenda.map((item, index) => {
+          {config.agenda.map((item, index) => {
             const Icon = ICONS[index] ?? Users;
             return (
               <MotionWrapper key={item.order} delay={index * 0.06}>

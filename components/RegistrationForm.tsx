@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { eventConfig } from "@/config/event";
+import type { EventConfig } from "@/config/types";
 import { submitRegistration } from "@/lib/submitRegistration";
 import {
   registrationSchema,
@@ -18,7 +18,7 @@ const fieldClass =
 const labelClass = "text-label-md text-on-surface-variant";
 const errorClass = "text-label-sm text-error";
 
-export function RegistrationForm() {
+export function RegistrationForm({ config }: { config: EventConfig }) {
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const {
     register,
@@ -31,7 +31,7 @@ export function RegistrationForm() {
 
   async function onSubmit(values: RegistrationFormValues) {
     setStatus("idle");
-    const result = await submitRegistration(values);
+    const result = await submitRegistration(values, config.gasWebAppUrl);
     if (result.success) {
       setStatus("success");
       reset();
@@ -47,10 +47,10 @@ export function RegistrationForm() {
           <div className="rounded-3xl border border-outline-variant/10 bg-surface p-8 shadow-xl shadow-primary/5 md:p-12">
             <div className="mb-12 text-center">
               <h2 className="text-headline-lg text-on-background">
-                {eventConfig.registration.heading}
+                {config.registration.heading}
               </h2>
               <p className="mt-2 text-body-md text-on-surface-variant">
-                {eventConfig.registration.description}
+                {config.registration.description}
               </p>
             </div>
 
@@ -201,14 +201,14 @@ export function RegistrationForm() {
                   htmlFor="privacyConsent"
                   className="text-label-sm leading-relaxed text-on-surface-variant"
                 >
-                  {eventConfig.registration.privacyConsentLabel}{" "}
+                  {config.registration.privacyConsentLabel}{" "}
                   <a
-                    href={eventConfig.footer.privacyPolicyUrl}
+                    href={config.footer.privacyPolicyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="whitespace-nowrap font-semibold text-primary underline underline-offset-2"
                   >
-                    {eventConfig.registration.privacyPolicyLinkLabel}
+                    {config.registration.privacyPolicyLinkLabel}
                   </a>
                 </label>
               </div>
@@ -221,7 +221,7 @@ export function RegistrationForm() {
                 disabled={isSubmitting}
                 className="w-full rounded-full bg-primary py-5 text-headline-md text-on-primary transition-all hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {isSubmitting ? "제출 중..." : eventConfig.ctaLabel}
+                {isSubmitting ? "제출 중..." : config.ctaLabel}
               </button>
 
               {status === "success" ? (
@@ -229,7 +229,7 @@ export function RegistrationForm() {
                   role="status"
                   className="rounded-lg bg-primary/10 px-4 py-3 text-center text-body-md text-primary"
                 >
-                  {eventConfig.registration.successMessage}
+                  {config.registration.successMessage}
                 </p>
               ) : null}
               {status === "error" ? (
@@ -237,7 +237,7 @@ export function RegistrationForm() {
                   role="alert"
                   className="rounded-lg bg-error/10 px-4 py-3 text-center text-body-md text-error"
                 >
-                  {eventConfig.registration.errorMessage}
+                  {config.registration.errorMessage}
                 </p>
               ) : null}
             </form>

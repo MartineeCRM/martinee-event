@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { pretendard, hankenGrotesk, inter } from "./fonts";
-import { eventConfig } from "@/config/event";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,15 +7,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
-  title: `${eventConfig.title} | Martinee`,
-  description: eventConfig.seo.description,
-  openGraph: {
-    title: eventConfig.seo.ogTitle,
-    description: eventConfig.seo.ogDescription,
-    type: "website",
-    // TODO: 실제 OG 이미지 제공 시 /public/images/og-image.jpg 로 교체
-    images: [{ url: "/images/og-placeholder.svg" }],
-  },
+  title: "Martinee Events",
+  description: "Martinee가 주최하는 프라이빗 행사 소개 페이지 모음입니다.",
 };
 
 export default function RootLayout({

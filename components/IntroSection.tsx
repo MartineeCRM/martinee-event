@@ -1,9 +1,9 @@
 import { Quote } from "lucide-react";
-import { eventConfig } from "@/config/event";
+import type { EventConfig } from "@/config/types";
 import { MotionWrapper } from "./MotionWrapper";
 
-export function IntroSection() {
-  const { intro } = eventConfig;
+export function IntroSection({ config }: { config: EventConfig }) {
+  const { intro } = config;
 
   return (
     <section className="bg-surface py-16 md:py-24">
