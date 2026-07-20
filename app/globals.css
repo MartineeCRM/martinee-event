@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Colors — PRD 5. 컬러 시스템 */
+  --color-primary: #003878;
+  --color-primary-container: #034ea2;
+  --color-secondary: #0060ab;
+  --color-link-blue: #2189ff;
+  --color-on-primary: #ffffff;
+
+  --color-background: #f9f9f9;
+  --color-background-alt: #f7f7f7;
+  --color-surface: #ffffff;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-low: #f3f3f3;
+  --color-surface-container-highest: #e2e2e2;
+
+  --color-on-background: #1b1b1b;
+  --color-on-surface-variant: #424752;
+  --color-outline: #737783;
+  --color-outline-variant: #c2c6d3;
+  --color-error: #ba1a1a;
+
+  /* Fonts — set via next/font in app/fonts.ts, wired to CSS vars in layout.tsx */
+  --font-sans: var(--font-pretendard), -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  --font-display: var(--font-hanken-grotesk), var(--font-sans);
+
+  /* Typography scale — PRD 6. Typography */
+  --text-display: 4rem;
+  --text-display--line-height: 4.5rem;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-display-mobile: 2.5rem;
+  --text-display-mobile--line-height: 3rem;
+  --text-display-mobile--font-weight: 700;
+  --text-display-mobile--letter-spacing: -0.01em;
+
+  --text-headline-lg: 2rem;
+  --text-headline-lg--line-height: 2.5rem;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-md: 1.5rem;
+  --text-headline-md--line-height: 2rem;
+  --text-headline-md--font-weight: 600;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75rem;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-md--font-weight: 400;
+
+  --text-label-md: 0.875rem;
+  --text-label-md--line-height: 1.25rem;
+  --text-label-md--font-weight: 500;
+  --text-label-md--letter-spacing: 0.01em;
+
+  --text-label-sm: 0.75rem;
+  --text-label-sm--line-height: 1rem;
+  --text-label-sm--font-weight: 600;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-on-background);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
