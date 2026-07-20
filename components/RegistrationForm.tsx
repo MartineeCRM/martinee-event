@@ -201,7 +201,15 @@ export function RegistrationForm() {
                   htmlFor="privacyConsent"
                   className="text-label-sm leading-relaxed text-on-surface-variant"
                 >
-                  {eventConfig.registration.privacyConsentLabel}
+                  {eventConfig.registration.privacyConsentLabel}{" "}
+                  <a
+                    href={eventConfig.footer.privacyPolicyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whitespace-nowrap font-semibold text-primary underline underline-offset-2"
+                  >
+                    {eventConfig.registration.privacyPolicyLinkLabel}
+                  </a>
                 </label>
               </div>
               {errors.privacyConsent ? (

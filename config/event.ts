@@ -1,17 +1,17 @@
 // 행사 정보를 한 곳에서 관리합니다. 다른 VIP 행사에 재사용할 때는 이 파일만 교체하면 됩니다.
 
 export const eventConfig = {
-  title: "AI Executive Dinner for Samsung",
+  title: "Executive Dinner for SAMSUNG",
   invitationLabel: "삼성 그룹 프라이빗 초청 행사",
   tagline: "AI 시대, 데이터 기반 의사결정의 새로운 기준",
-  date: "2026.09.02",
+  date: "2026.09.08",
   location: "서울, 추후 안내",
   host: ["Martinee", "Amplitude"],
   contactEmail: "mkt@martinee.io",
-  ctaLabel: "참가 신청하기",
+  ctaLabel: "참가 등록하기",
 
   nav: {
-    brandName: "AI EXECUTIVE DINNER",
+    brandName: "EXECUTIVE DINNER",
   },
 
   hero: {
@@ -21,11 +21,11 @@ export const eventConfig = {
   },
 
   intro: {
-    heading: "AI 시대, 리더십의 기준이 달라지고 있습니다",
+    heading: "AI 시대, 의사결정의 기준이 달라지고 있습니다",
     body: [
       "AI가 제품 경험과 고객 여정을 빠르게 바꾸고 있는 지금, 기업의 리더십은 더 빠르고 정교한 의사결정을 요구받고 있습니다.",
       "이번 프라이빗 디너는 삼성 그룹의 주요 리더를 모시고, AI 시대의 데이터 활용 방식과 제품 인텔리전스의 진화 방향을 함께 논의하기 위해 마련되었습니다.",
-      "단순한 트렌드 공유를 넘어, 실제 비즈니스 의사결정에 연결되는 인사이트와 네트워킹을 제공하는 자리로 설계합니다.",
+      "단순한 트렌드 공유를 넘어, 실제 비즈니스 의사결정에 연결되는 인사이트를 공유합니다.",
     ],
     highlightQuote:
       "좋은 AI 활용은 더 많은 데이터를 보는 것이 아니라, 더 나은 질문을 설계하고 더 빠르게 실행하는 방식에서 시작됩니다.",
@@ -87,18 +87,6 @@ export const eventConfig = {
     },
   ],
 
-  speakers: [
-    {
-      name: "추후 공개",
-      jobTitle: "추후 공개",
-      company: "Amplitude / Martinee",
-      bio: "AI 시대의 데이터 분석과 제품 인텔리전스에 대한 인사이트를 공유합니다.",
-      session: "추후 공개",
-      // TODO: 실제 연사 사진 제공 시 /public/images/speakers/ 에 추가하고 photoUrl 지정
-      photoUrl: null as string | null,
-    },
-  ],
-
   venue: {
     name: "행사 장소",
     address: "행사 장소는 참석 확정자에 한해 별도 안내드립니다.",
@@ -110,9 +98,6 @@ export const eventConfig = {
   },
 
   partners: {
-    heading: "Hosted by Martinee & Amplitude",
-    description:
-      "삼성 그룹을 위한 프라이빗 인사이트 세션으로, AI 시대의 데이터 활용과 제품 인텔리전스 전략을 함께 논의합니다.",
     // TODO: 실제 로고 제공 시 /public/logos/ 에 추가 (martinee.svg, amplitude.svg 등)
     logos: [
       { name: "Martinee", logoUrl: null as string | null },
@@ -121,25 +106,24 @@ export const eventConfig = {
   },
 
   registration: {
-    heading: "참가 신청",
-    description:
-      "본 행사는 초청 대상자에 한해 참석이 가능합니다. 신청 정보를 제출해주시면 확인 후 개별 안내드리겠습니다.",
+    heading: "참가 등록",
+    description: "신청 정보를 제출해주시면 확인 후 개별 안내드리겠습니다.",
     privacyConsentLabel:
       "행사 운영 및 참석 안내를 위해 입력하신 개인정보를 수집 및 이용하는 데 동의합니다. 수집된 정보는 행사 운영 목적 외에는 사용되지 않습니다.",
+    privacyPolicyLinkLabel: "자세히 보기",
     successMessage: "참가 신청이 완료되었습니다. 확인 후 개별 안내드리겠습니다.",
     errorMessage: "신청 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
   },
 
   footer: {
     copyright: "© 2026 Martinee. All rights reserved.",
-    // TODO: 개인정보처리방침 URL 제공 시 교체
-    privacyPolicyUrl: "#",
+    privacyPolicyUrl: "https://martinee.notion.site/7cab6d3779c546fc801f79415646c03c",
   },
 
   seo: {
     description:
-      "삼성 그룹 리더를 위한 프라이빗 AI Executive Dinner. AI 시대의 데이터 기반 의사결정과 Product Intelligence 전략을 함께 논의합니다.",
-    ogTitle: "AI Executive Dinner for Samsung",
+      "삼성 그룹 리더를 위한 프라이빗 Executive Dinner. AI 시대의 데이터 기반 의사결정과 Product Intelligence 전략을 함께 논의합니다.",
+    ogTitle: "Executive Dinner for SAMSUNG",
     ogDescription:
       "삼성 그룹을 위한 프라이빗 인사이트 세션. AI 시대의 데이터 활용과 제품 인텔리전스 전략을 함께 논의합니다.",
   },

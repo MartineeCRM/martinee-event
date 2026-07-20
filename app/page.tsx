@@ -6,7 +6,6 @@ import { IntroSection } from "@/components/IntroSection";
 import { KeyMessageSection } from "@/components/KeyMessageSection";
 import { PartnerSection } from "@/components/PartnerSection";
 import { RegistrationForm } from "@/components/RegistrationForm";
-import { SpeakerSection } from "@/components/SpeakerSection";
 import { VenueSection } from "@/components/VenueSection";
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
         <IntroSection />
         <KeyMessageSection />
         <AgendaSection />
-        <SpeakerSection />
         <VenueSection />
         <PartnerSection />
         <RegistrationForm />

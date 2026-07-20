@@ -10,14 +10,7 @@ export function PartnerSection() {
     <section className="bg-background-alt py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-[20px] text-center md:px-[64px]">
         <MotionWrapper>
-          <h2 className="text-headline-lg text-on-background">
-            {partners.heading}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-body-md text-on-surface-variant">
-            {partners.description}
-          </p>
-
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-12">
+          <div className="flex flex-wrap items-center justify-center gap-12">
             {partners.logos.map((logo) => (
               <div
                 key={logo.name}
