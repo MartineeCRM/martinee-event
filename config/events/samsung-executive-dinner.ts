@@ -70,23 +70,23 @@ export const eventConfig = {
     },
     {
       order: "03",
-      title: "Keynote",
+      title: "Session 1",
       time: "18:00 - 18:20",
       description: "세션 1: AI 시대의 Product Intelligence와 데이터 기반 의사결정",
       highlight: true,
     },
     {
       order: "04",
-      title: "Dinner & Discussion",
+      title: "Session 2",
       time: "18:20 - 18:40",
       description: "세션 2: Amplitude Use Case",
       highlight: false,
     },
     {
       order: "05",
-      title: "Networking",
+      title: "Networking Dinner",
       time: "18:40 - 20:00",
-      description: "프라이빗 네트워킹 디너",
+      description: "네트워킹 만찬 *프리미엄 중식 코스요리가 제공됩니다.",
       highlight: false,
     },
   ],
@@ -101,8 +101,7 @@ export const eventConfig = {
       { src: "/venue/1.png", alt: "행사 장소 이미지 1" },
       { src: "/venue/2.png", alt: "행사 장소 이미지 2" },
       { src: "/venue/3.png", alt: "행사 장소 이미지 3" },
-      { src: "/venue/4.png", alt: "행사 장소 이미지 4" },
-      { src: "/venue/5.png", alt: "행사 장소 이미지 5" },
+      { src: "/venue/4.png", alt: "행사 장소 이미지 4" }
     ],
   },
 
