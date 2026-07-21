@@ -18,8 +18,8 @@ export function HeroSection({ config }: { config: EventConfig }) {
               <Image
                 src={config.hero.titleImageUrl}
                 alt={config.title}
-                width={600}
-                height={120}
+                width={1191}
+                height={325}
                 priority
               />
             </h1>
