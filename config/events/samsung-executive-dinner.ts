@@ -22,8 +22,7 @@ export const eventConfig = {
       { name: "Martinee", logoUrl: null },
       { name: "Amplitude", logoUrl: null },
     ],
-
-    backgroundGraphicUrl: "/public/images/hero-graphic.png",
+    backgroundGraphicUrl: "/images/hero-graphic.png",
   },
 
   intro: {
