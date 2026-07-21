@@ -63,8 +63,8 @@ export function HeroSection({ config }: { config: EventConfig }) {
                   key={logo.name}
                   src={logo.logoUrl as string}
                   alt={logo.name}
-                  width={120}
-                  height={40}
+                  width={340.2}
+                  height={70.88}
                 />
               ))}
             </div>
