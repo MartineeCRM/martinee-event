@@ -22,9 +22,8 @@ export const eventConfig = {
       { name: "Martinee", logoUrl: "/logos/martinee.svg" },
       { name: "Amplitude", logoUrl: "/logos/amplitude.svg" },
     ],
-    // TODO: 첨부 예시처럼 장식용 그래픽을 넣으려면 /public/images/hero-graphic.png 에
-    // (배경 투명 PNG 권장) 파일을 추가하고 아래 경로를 채우세요.
-    backgroundGraphicUrl: null,
+
+    backgroundGraphicUrl: "/public/images/hero-graphic.png",
   },
 
   intro: {
