@@ -11,14 +11,17 @@ export function HeroSection({ config }: { config: EventConfig }) {
       className="relative flex min-h-[85vh] items-end overflow-hidden bg-gradient-to-b from-[#F7F8FF] to-white pb-16 md:pb-24"
     >
       {config.hero.backgroundGraphicUrl ? (
-        <Image
-          src={config.hero.backgroundGraphicUrl}
-          alt=""
-          fill
-          priority
-          className="pointer-events-none select-none object-cover"
-          aria-hidden="true"
-        />
+        <div className="pointer-events-none absolute inset-x-0 top-20 z-0 mx-auto w-full max-w-[1440px] select-none px-[20px] md:px-[64px]">
+          <Image
+            src={config.hero.backgroundGraphicUrl}
+            alt=""
+            width={1920}
+            height={1080}
+            priority
+            className="h-auto w-full"
+            aria-hidden="true"
+          />
+        </div>
       ) : null}
 
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] md:px-[64px]">
