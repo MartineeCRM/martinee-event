@@ -19,8 +19,8 @@ export const eventConfig = {
   hero: {
     titleImageUrl: "/images/event-title.png",
     hostLogos: [
-      { name: "Martinee", logoUrl: "/logos/martinee.svg" },
-      { name: "Amplitude", logoUrl: "/logos/amplitude.svg" },
+      { name: "Martinee", logoUrl: null },
+      { name: "Amplitude", logoUrl: null },
     ],
 
     backgroundGraphicUrl: "/public/images/hero-graphic.png",
