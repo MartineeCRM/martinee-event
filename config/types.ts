@@ -11,6 +11,8 @@ export interface EventConfig {
 
   nav: {
     brandName: string;
+    // 헤더에 텍스트 대신 로고 이미지를 쓰고 싶을 때 경로 지정. null이면 brandName 텍스트로 표시.
+    logoUrl: string | null;
   };
 
   hero: {
@@ -18,6 +20,8 @@ export interface EventConfig {
     titleImageUrl: string | null;
     // 주최사 로고. logoUrl이 있는 항목만 Hero에 표시됩니다.
     hostLogos: { name: string; logoUrl: string | null }[];
+    // Hero 배경에 넣을 장식용 그래픽. null이면 표시 안 함.
+    backgroundGraphicUrl: string | null;
   };
 
   intro: {
@@ -41,8 +45,8 @@ export interface EventConfig {
   venue: {
     address: string;
     description: string;
-    // 구글맵 "지도 공유 > 지도 퍼가기"에서 얻은 iframe src URL. null이면 지도 미표시.
-    mapEmbedUrl: string | null;
+    // 주소 클릭 시 이동할 구글맵 링크. null이면 링크 없이 텍스트만 표시.
+    mapUrl: string | null;
     // src가 null이면 "이미지 준비 중" placeholder로 표시됩니다.
     images: { src: string | null; alt: string }[];
   };

@@ -10,6 +10,17 @@ export function HeroSection({ config }: { config: EventConfig }) {
       id="top"
       className="relative flex min-h-[85vh] items-end overflow-hidden bg-gradient-to-b from-[#F7F8FF] to-white pb-16 md:pb-24"
     >
+      {config.hero.backgroundGraphicUrl ? (
+        <Image
+          src={config.hero.backgroundGraphicUrl}
+          alt=""
+          fill
+          priority
+          className="pointer-events-none select-none object-cover"
+          aria-hidden="true"
+        />
+      ) : null}
+
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] md:px-[64px]">
         <div className="max-w-3xl">
           {config.hero.titleImageUrl ? (
@@ -50,7 +61,7 @@ export function HeroSection({ config }: { config: EventConfig }) {
 
           <a
             href="#register"
-            className="mt-10 inline-block rounded-full bg-primary px-8 py-4 text-label-md text-on-primary transition-all hover:bg-primary-container active:scale-95"
+            className="mt-10 inline-block rounded-full bg-primary px-12 py-6 text-headline-md font-bold text-on-primary transition-all hover:bg-primary-container active:scale-95"
           >
             {config.ctaLabel}
           </a>
@@ -62,8 +73,8 @@ export function HeroSection({ config }: { config: EventConfig }) {
                   key={logo.name}
                   src={logo.logoUrl as string}
                   alt={logo.name}
-                  width={340}
-                  height={71}
+                  width={297}
+                  height={57}
                   className="h-10 w-auto"
                 />
               ))}

@@ -8,7 +8,7 @@ export function IntroSection({ config }: { config: EventConfig }) {
     <section className="bg-surface py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-[20px] md:px-[64px]">
         <MotionWrapper>
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="text-center">
             <h2 className="mb-8 text-headline-lg text-primary">
               {intro.heading}
             </h2>

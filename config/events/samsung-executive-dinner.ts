@@ -6,13 +6,14 @@ export const eventConfig = {
   title: "Executive Dinner for SAMSUNG",
   tagline: "AI 시대, 데이터 기반 의사결정의 새로운 기준",
   date: "2026.09.08",
-  location: "서울, 추후 안내",
+  location: "조선 팰리스 강남 더 그레이트 홍연",
   host: ["Martinee", "Amplitude"],
   contactEmail: "mkt@martinee.io",
   ctaLabel: "참가 등록하기",
 
   nav: {
     brandName: "EXECUTIVE DINNER",
+    logoUrl: "/logos/martinee.svg",
   },
 
   hero: {
@@ -21,6 +22,9 @@ export const eventConfig = {
       { name: "Martinee", logoUrl: "/logos/martinee.svg" },
       { name: "Amplitude", logoUrl: "/logos/amplitude.svg" },
     ],
+    // TODO: 첨부 예시처럼 장식용 그래픽을 넣으려면 /public/images/hero-graphic.png 에
+    // (배경 투명 PNG 권장) 파일을 추가하고 아래 경로를 채우세요.
+    backgroundGraphicUrl: null,
   },
 
   intro: {
@@ -90,10 +94,10 @@ export const eventConfig = {
 
   venue: {
     address: "서울시 강남구 테헤란로 231 조선 팰리스 36F, 더 그레이트 홍연",
-    description:
-      "프라이빗한 대화에 어울리는 프리미엄 공간에서 진행됩니다. 자세한 장소는 참석 확정 후 개별 안내드립니다.",
-    mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x357ca51bfbac9479%3A0x550c905899e0e7cc!2z642UIOq3uOugiOydtO2KuCDtmY3sl7A!5e0!3m2!1sko!2skr!4v1784621336571!5m2!1sko!2skr",
+    description: "프라이빗한 자리에 어울리는 프리미엄 공간에서 진행됩니다.",
+    mapUrl:
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent("서울시 강남구 테헤란로 231 조선 팰리스 36F, 더 그레이트 홍연"),
     images: [
       { src: "/venue/1.png", alt: "행사 장소 이미지 1" },
       { src: "/venue/2.png", alt: "행사 장소 이미지 2" },

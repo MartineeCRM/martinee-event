@@ -21,6 +21,22 @@ export function VenueSection({ config }: { config: EventConfig }) {
       <div className="mx-auto mb-8 flex max-w-[1440px] items-end justify-between px-[20px] md:mb-12 md:px-[64px]">
         <div>
           <h2 className="text-headline-lg text-on-background">VENUE</h2>
+          {venue.mapUrl ? (
+            <a
+              href={venue.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 flex items-center gap-2 text-body-md text-primary underline underline-offset-2 hover:text-primary-container"
+            >
+              <MapPin size={16} aria-hidden="true" />
+              {venue.address}
+            </a>
+          ) : (
+            <p className="mt-2 flex items-center gap-2 text-body-md text-on-surface-variant">
+              <MapPin size={16} aria-hidden="true" />
+              {venue.address}
+            </p>
+          )}
           <p className="mt-2 text-body-md text-on-surface-variant">
             {venue.description}
           </p>
@@ -79,26 +95,6 @@ export function VenueSection({ config }: { config: EventConfig }) {
           )}
         </div>
       </MotionWrapper>
-
-      <div className="mx-auto mt-8 max-w-[1440px] px-[20px] md:px-[64px]">
-        <div className="mb-6 flex items-center gap-3 text-on-surface-variant">
-          <MapPin className="text-primary" size={20} aria-hidden="true" />
-          <span className="text-body-md">{venue.address}</span>
-        </div>
-
-        {venue.mapEmbedUrl ? (
-          <div className="overflow-hidden rounded-2xl border border-outline-variant/40">
-            <iframe
-              src={venue.mapEmbedUrl}
-              className="h-[320px] w-full md:h-[420px]"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="행사 장소 지도"
-            />
-          </div>
-        ) : null}
-      </div>
     </section>
   );
 }

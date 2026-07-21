@@ -189,11 +189,11 @@ export function RegistrationForm({ config }: { config: EventConfig }) {
                 />
               </div>
 
-              <div className="flex items-start gap-4 pt-2">
+              <div className="flex items-center gap-4 pt-2">
                 <input
                   id="privacyConsent"
                   type="checkbox"
-                  className="mt-1 h-5 w-5 rounded border-outline-variant text-primary focus:ring-primary"
+                  className="h-5 w-5 shrink-0 rounded border-outline-variant text-primary focus:ring-primary"
                   aria-invalid={Boolean(errors.privacyConsent)}
                   {...register("privacyConsent")}
                 />

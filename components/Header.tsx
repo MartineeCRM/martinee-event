@@ -1,6 +1,6 @@
 "use client";
 
-import { Gem } from "lucide-react";
+import Image from "next/image";
 import type { EventConfig } from "@/config/types";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 
@@ -19,10 +19,20 @@ export function Header({ config }: { config: EventConfig }) {
           className="flex min-w-0 items-center gap-2"
           aria-label="페이지 상단으로 이동"
         >
-          <Gem className="shrink-0 text-primary" size={20} aria-hidden="true" />
-          <span className="truncate whitespace-nowrap font-display text-label-md font-bold tracking-tight text-primary md:text-headline-md">
-            {config.nav.brandName}
-          </span>
+          {config.nav.logoUrl ? (
+            <Image
+              src={config.nav.logoUrl}
+              alt={config.nav.brandName}
+              width={297}
+              height={57}
+              className="h-7 w-auto"
+              priority
+            />
+          ) : (
+            <span className="truncate whitespace-nowrap font-display text-label-md font-bold tracking-tight text-primary md:text-headline-md">
+              {config.nav.brandName}
+            </span>
+          )}
         </a>
         <a
           href="#register"
