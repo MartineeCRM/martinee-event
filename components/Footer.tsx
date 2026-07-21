@@ -6,7 +6,7 @@ export function Footer({ config }: { config: EventConfig }) {
       <div className="mx-auto flex max-w-[1440px] flex-col items-center gap-6 px-[20px] md:flex-row md:justify-between md:px-[64px]">
         <div className="flex flex-col items-center gap-2 md:items-start">
           <span className="font-display text-label-md font-bold tracking-widest text-primary">
-            {config.nav.brandName}
+            {config.footer.brandName}
           </span>
           <p className="text-body-md text-on-surface-variant">
             {config.footer.copyright}

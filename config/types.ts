@@ -2,7 +2,6 @@
 // config/events/ 아래에 파일을 하나 추가하면 됩니다.
 export interface EventConfig {
   title: string;
-  invitationLabel: string;
   tagline: string;
   date: string;
   location: string;
@@ -15,13 +14,15 @@ export interface EventConfig {
   };
 
   hero: {
-    backgroundPlaceholder: boolean;
+    // 행사명을 이미지(로고/워드마크)로 대체하고 싶을 때 경로 지정. null이면 텍스트로 표시.
+    titleImageUrl: string | null;
+    // 주최사 로고. logoUrl이 있는 항목만 Hero에 표시됩니다.
+    hostLogos: { name: string; logoUrl: string | null }[];
   };
 
   intro: {
     heading: string;
     body: string[];
-    highlightQuote: string;
   };
 
   keyMessages: {
@@ -38,15 +39,12 @@ export interface EventConfig {
   }[];
 
   venue: {
-    name: string;
     address: string;
     description: string;
-    mapUrl: string | null;
-    imagePlaceholderCount: number;
-  };
-
-  partners: {
-    logos: { name: string; logoUrl: string | null }[];
+    // 구글맵 "지도 공유 > 지도 퍼가기"에서 얻은 iframe src URL. null이면 지도 미표시.
+    mapEmbedUrl: string | null;
+    // src가 null이면 "이미지 준비 중" placeholder로 표시됩니다.
+    images: { src: string | null; alt: string }[];
   };
 
   registration: {
@@ -63,6 +61,7 @@ export interface EventConfig {
   gasWebAppUrl: string | undefined;
 
   footer: {
+    brandName: string;
     copyright: string;
     privacyPolicyUrl: string;
   };

@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { IntroSection } from "@/components/IntroSection";
 import { KeyMessageSection } from "@/components/KeyMessageSection";
-import { PartnerSection } from "@/components/PartnerSection";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { VenueSection } from "@/components/VenueSection";
 import { eventConfig } from "@/config/events/samsung-executive-dinner";
@@ -32,7 +31,6 @@ export default function SamsungExecutiveDinnerPage() {
         <KeyMessageSection config={eventConfig} />
         <AgendaSection config={eventConfig} />
         <VenueSection config={eventConfig} />
-        <PartnerSection config={eventConfig} />
         <RegistrationForm config={eventConfig} />
       </main>
       <Footer config={eventConfig} />

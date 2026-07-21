@@ -4,7 +4,6 @@ import type { EventConfig } from "../types";
 // config/events/ 아래에 새로 만들고, app/ 아래 같은 이름의 라우트를 추가하면 됩니다.
 export const eventConfig = {
   title: "Executive Dinner for SAMSUNG",
-  invitationLabel: "삼성 그룹 프라이빗 초청 행사",
   tagline: "AI 시대, 데이터 기반 의사결정의 새로운 기준",
   date: "2026.09.08",
   location: "서울, 추후 안내",
@@ -17,9 +16,15 @@ export const eventConfig = {
   },
 
   hero: {
-    // TODO: 실제 Hero 배경 이미지 제공 시 /public/images/hero-bg.jpg 로 교체하고
-    // HeroSection.tsx의 배경 스타일을 이미지로 변경
-    backgroundPlaceholder: true,
+    // TODO: 행사명을 이미지(로고/워드마크)로 넣으려면 /public/images/event-title.png 에
+    // 파일을 추가하고 아래 경로를 채우세요. null이면 텍스트(title)로 표시됩니다.
+    titleImageUrl: null,
+    // TODO: 주최사 로고 제공 시 /public/logos/ 에 추가하고 logoUrl을 채우세요.
+    // logoUrl이 있는 항목만 Hero에 표시됩니다.
+    hostLogos: [
+      { name: "Martinee", logoUrl: null },
+      { name: "Amplitude", logoUrl: null },
+    ],
   },
 
   intro: {
@@ -29,8 +34,6 @@ export const eventConfig = {
       "이번 프라이빗 디너는 삼성 그룹의 주요 리더를 모시고, AI 시대의 데이터 활용 방식과 제품 인텔리전스의 진화 방향을 함께 논의하기 위해 마련되었습니다.",
       "단순한 트렌드 공유를 넘어, 실제 비즈니스 의사결정에 연결되는 인사이트를 공유합니다.",
     ],
-    highlightQuote:
-      "좋은 AI 활용은 더 많은 데이터를 보는 것이 아니라, 더 나은 질문을 설계하고 더 빠르게 실행하는 방식에서 시작됩니다.",
   },
 
   keyMessages: [
@@ -90,20 +93,16 @@ export const eventConfig = {
   ],
 
   venue: {
-    name: "행사 장소",
     address: "행사 장소는 참석 확정자에 한해 별도 안내드립니다.",
     description:
       "프라이빗한 대화에 어울리는 프리미엄 공간에서 진행됩니다. 자세한 장소는 참석 확정 후 개별 안내드립니다.",
-    mapUrl: null,
-    // TODO: 실제 장소 이미지 제공 시 /public/images/venue/ 에 추가하고 아래 슬롯 수만큼 채움
-    imagePlaceholderCount: 3,
-  },
-
-  partners: {
-    // TODO: 실제 로고 제공 시 /public/logos/ 에 추가 (martinee.svg, amplitude.svg 등)
-    logos: [
-      { name: "Martinee", logoUrl: null },
-      { name: "Amplitude", logoUrl: null },
+    // TODO: 구글맵에서 "공유 > 지도 퍼가기(embed a map)"로 얻은 iframe src URL을 넣으세요.
+    mapEmbedUrl: null,
+    // TODO: 실제 장소 이미지 제공 시 /public/images/venue/1.jpg 등으로 추가하고 src를 채우세요.
+    images: [
+      { src: null, alt: "행사 장소 이미지 1" },
+      { src: null, alt: "행사 장소 이미지 2" },
+      { src: null, alt: "행사 장소 이미지 3" },
     ],
   },
 
@@ -111,7 +110,7 @@ export const eventConfig = {
     heading: "참가 등록",
     description: "신청 정보를 제출해주시면 확인 후 개별 안내드리겠습니다.",
     privacyConsentLabel:
-      "행사 운영 및 참석 안내를 위해 입력하신 개인정보를 수집 및 이용하는 데 동의합니다. 수집된 정보는 행사 운영 목적 외에는 사용되지 않습니다.",
+      "행사 운영 및 참석 안내를 위해 입력하신 개인정보를 수집 및 이용하는 데 동의합니다.",
     privacyPolicyLinkLabel: "자세히 보기",
     successMessage: "참가 신청이 완료되었습니다. 확인 후 개별 안내드리겠습니다.",
     errorMessage: "신청 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
@@ -121,7 +120,8 @@ export const eventConfig = {
   gasWebAppUrl: process.env.NEXT_PUBLIC_GAS_WEB_APP_URL_SAMSUNG_EXECUTIVE_DINNER,
 
   footer: {
-    copyright: "© 2026 Martinee. All rights reserved.",
+    brandName: "EXECUTIVE DINNER for SAMSUNG",
+    copyright: "© 2026 Martinee io. All rights reserved.",
     privacyPolicyUrl: "https://martinee.notion.site/7cab6d3779c546fc801f79415646c03c",
   },
 
