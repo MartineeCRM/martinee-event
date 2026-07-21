@@ -16,12 +16,10 @@ export const eventConfig = {
   },
 
   hero: {
-    titleImageUrl: /images/event-title.png,
-    // TODO: 주최사 로고 제공 시 /public/logos/ 에 추가하고 logoUrl을 채우세요.
-    // logoUrl이 있는 항목만 Hero에 표시됩니다.
+    titleImageUrl: "/images/event-title.png",
     hostLogos: [
-      { name: "Martinee", logoUrl: /logos/martinee.svg },
-      { name: "Amplitude", logoUrl: /logos/amplitude.svg },
+      { name: "Martinee", logoUrl: "/logos/martinee.svg" },
+      { name: "Amplitude", logoUrl: "/logos/amplitude.svg" },
     ],
   },
 
@@ -94,11 +92,14 @@ export const eventConfig = {
     address: "서울시 강남구 테헤란로 231 조선 팰리스 36F, 더 그레이트 홍연",
     description:
       "프라이빗한 대화에 어울리는 프리미엄 공간에서 진행됩니다. 자세한 장소는 참석 확정 후 개별 안내드립니다.",
-    mapEmbedUrl: <iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x357ca51bfbac9479%3A0x550c905899e0e7cc!2z642UIOq3uOugiOydtO2KuCDtmY3sl7A!5e0!3m2!1sko!2skr!4v1784621336571!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>,
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x357ca51bfbac9479%3A0x550c905899e0e7cc!2z642UIOq3uOugiOydtO2KuCDtmY3sl7A!5e0!3m2!1sko!2skr!4v1784621336571!5m2!1sko!2skr",
     images: [
-      { src: /public/images/venue/1.jpg, alt: "행사 장소 이미지 1" },
-      { src: /public/images/venue/2.jpg, alt: "행사 장소 이미지 2" },
-      { src: /public/images/venue/3.jpg, alt: "행사 장소 이미지 3" },
+      { src: "/venue/1.png", alt: "행사 장소 이미지 1" },
+      { src: "/venue/2.png", alt: "행사 장소 이미지 2" },
+      { src: "/venue/3.png", alt: "행사 장소 이미지 3" },
+      { src: "/venue/4.png", alt: "행사 장소 이미지 4" },
+      { src: "/venue/5.png", alt: "행사 장소 이미지 5" },
     ],
   },
 

@@ -14,13 +14,13 @@ export function HeroSection({ config }: { config: EventConfig }) {
         <div className="max-w-3xl">
           {config.hero.titleImageUrl ? (
             <h1 className="mb-8">
-              {/* TODO: 실제 이미지 비율에 맞게 width/height 조정 */}
               <Image
                 src={config.hero.titleImageUrl}
                 alt={config.title}
                 width={1191}
                 height={325}
                 priority
+                className="h-auto w-full max-w-[420px]"
               />
             </h1>
           ) : (
@@ -58,13 +58,13 @@ export function HeroSection({ config }: { config: EventConfig }) {
           {hostLogos.length > 0 ? (
             <div className="mt-12 flex flex-wrap items-center gap-8">
               {hostLogos.map((logo) => (
-                // TODO: 실제 로고 비율에 맞게 width/height 조정
                 <Image
                   key={logo.name}
                   src={logo.logoUrl as string}
                   alt={logo.name}
-                  width={340.2}
-                  height={70.88}
+                  width={340}
+                  height={71}
+                  className="h-10 w-auto"
                 />
               ))}
             </div>
