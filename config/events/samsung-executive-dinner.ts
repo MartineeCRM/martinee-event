@@ -5,7 +5,7 @@ import type { EventConfig } from "../types";
 export const eventConfig = {
   title: "Executive Dinner for SAMSUNG",
   tagline: "AI 시대, 데이터 기반 의사결정의 새로운 기준",
-  date: "2026.09.08",
+  date: "2026.09.09",
   location: "조선 팰리스 강남 더 그레이트 홍연",
   host: ["Martinee", "Amplitude"],
   contactEmail: "mkt@martinee.io",
@@ -72,7 +72,7 @@ export const eventConfig = {
       title: "Session 1",
       time: "18:00 - 18:20",
       description: "세션 1: AI 시대의 Product Intelligence와 데이터 기반 의사결정",
-      highlight: true,
+      highlight: false,
     },
     {
       order: "04",
