@@ -18,10 +18,16 @@ export interface EventConfig {
   hero: {
     // 행사명을 이미지(로고/워드마크)로 대체하고 싶을 때 경로 지정. null이면 텍스트로 표시.
     titleImageUrl: string | null;
-    // 주최사 로고. logoUrl이 있는 항목만 Hero에 표시됩니다.
+    // 시리즈물의 회차 배지로 쓰는 라벨(예: "[THE STANDARD]"). null이면 표시 안 함.
+    seriesLabel: string | null;
+    // 주최사 로고. logoUrl이 있는 항목만 Hero에 이미지로 표시됩니다.
     hostLogos: { name: string; logoUrl: string | null }[];
+    // 이미지 로고가 없는 파트너/후원사를 텍스트 배지로 표시하고 싶을 때 사용.
+    partnerLogos: { name: string }[];
     // Hero 배경에 넣을 장식용 그래픽. null이면 표시 안 함.
     backgroundGraphicUrl: string | null;
+    // 웨비나/행사 시작 시각(ISO 8601). null이면 카운트다운을 표시하지 않음.
+    countdownTargetAt: string | null;
   };
 
   intro: {
@@ -58,6 +64,8 @@ export interface EventConfig {
     privacyPolicyLinkLabel: string;
     successMessage: string;
     errorMessage: string;
+    // 식이 제한/알레르기 입력 필드를 등록폼에 노출할지 여부. 오프라인 식사가 있는 행사만 true.
+    showDietaryRestrictions: boolean;
   };
 
   // Google Apps Script Web App URL. 행사마다 별도로 배포하고 별도의 환경변수로 관리합니다.

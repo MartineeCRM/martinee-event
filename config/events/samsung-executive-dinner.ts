@@ -18,11 +18,14 @@ export const eventConfig = {
 
   hero: {
     titleImageUrl: "/images/event-title.png",
+    seriesLabel: null,
     hostLogos: [
       { name: "Martinee", logoUrl: null },
       { name: "Amplitude", logoUrl: null },
     ],
+    partnerLogos: [],
     backgroundGraphicUrl: "/images/hero-graphic.png",
+    countdownTargetAt: null,
   },
 
   intro: {
@@ -112,6 +115,7 @@ export const eventConfig = {
     privacyPolicyLinkLabel: "자세히 보기",
     successMessage: "참가 신청이 완료되었습니다. 확인 후 개별 안내드리겠습니다.",
     errorMessage: "신청 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+    showDietaryRestrictions: true,
   },
 
   // 이 행사 전용 Google Apps Script Web App URL (google-apps-script/README.md 참고)
