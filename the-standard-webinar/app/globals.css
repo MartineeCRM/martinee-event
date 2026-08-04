@@ -15,3 +15,9 @@
 /* The source SVG's 1520 × 260 proportion is preserved at every breakpoint. */
 .standard-logo { display:block; width:152px; height:auto; }.hero-logo .standard-logo { width:clamp(270px,29vw,440px); }.mobile-menu-head .standard-logo { width:152px; filter:invert(1); }.footer-logo { width:clamp(210px,22vw,340px); filter:invert(1); }
 @media (max-width:800px) { .brand .standard-logo { width:136px; }.hero-logo .standard-logo { width:min(74vw,360px); }.mobile-menu-head .standard-logo { width:136px; }.footer-logo { width:min(72vw,300px); } }
+
+/* Layout and interaction refinements */
+.hero { align-items:center; }.hero-inner { transform:translateY(-7vh); }.hero-spotlight { pointer-events:none; position:absolute; z-index:1; left:var(--spotlight-x,68%); top:var(--spotlight-y,40%); width:min(48vw,680px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(20,90,255,.14),rgba(20,90,255,0) 67%); transform:translate(-50%,-50%); opacity:0; transition:opacity .35s ease,left .16s ease-out,top .16s ease-out; }.hero:hover .hero-spotlight { opacity:1; }.speaker-grid { grid-template-columns:repeat(3,minmax(0,320px)); justify-content:center; }.speaker-card { width:100%; }
+@media (max-width:1100px) and (min-width:801px) { .speaker-grid { grid-template-columns:repeat(2,minmax(0,320px)); } }
+@media (max-width:800px) { .hero { align-items:flex-start; padding-top:128px; }.hero-inner { transform:none; }.hero-spotlight { display:none; }.speaker-grid { grid-template-columns:1fr; justify-content:stretch; } }
+@media (prefers-reduced-motion:reduce) { .hero-spotlight { display:none; } }

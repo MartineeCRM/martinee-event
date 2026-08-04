@@ -1,9 +1,8 @@
 "use client";
 
-import type { FormEvent } from "react";
-import { useState } from "react";
+import type { FormEvent, PointerEvent } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import standardLogo from "../logo/logo.svg";
 
 const PRIVACY_POLICY_URL = "https://martinee.notion.site/7cab6d3779c546fc801f79415646c03c";
 const GAS_WEB_APP_URL = process.env.NEXT_PUBLIC_THE_STANDARD_GAS_WEB_APP_URL;
@@ -25,7 +24,7 @@ function Arrow() {
 }
 
 function StandardLogo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
-  return <Image src={standardLogo} alt="THE STANDARD" className={`standard-logo ${className}`} priority={priority} />;
+  return <Image src="/the-standard-webinar/logo/logo.svg" alt="THE STANDARD" width={1520} height={260} className={`standard-logo ${className}`} priority={priority} />;
 }
 
 export default function Home() {
@@ -33,6 +32,14 @@ export default function Home() {
   const [fields, setFields] = useState<Fields>(initialFields);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const heroRef = useRef<HTMLElement>(null);
+
+  function moveHeroSpotlight(event: PointerEvent<HTMLElement>) {
+    if (!window.matchMedia("(pointer: fine)").matches || !heroRef.current) return;
+    const bounds = heroRef.current.getBoundingClientRect();
+    heroRef.current.style.setProperty("--spotlight-x", `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
+    heroRef.current.style.setProperty("--spotlight-y", `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
+  }
 
   function updateField<K extends keyof Fields>(key: K, value: Fields[K]) {
     setFields((current) => ({ ...current, [key]: value }));
@@ -85,7 +92,7 @@ export default function Home() {
         <nav className="desktop-nav" aria-label="주요 메뉴">
           {navItems.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
         </nav>
-        <a className="header-cta" href="#apply">무료 등록하기 <Arrow /></a>
+        <a className="header-cta" href="#apply">무료 등록하기</a>
         <button className="menu-button" aria-label="메뉴 열기" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><span /><span /></button>
       </header>
 
@@ -95,8 +102,9 @@ export default function Home() {
       </div>
 
       <main id="top">
-        <section className="hero" aria-labelledby="hero-title">
+        <section ref={heroRef} className="hero" aria-labelledby="hero-title" onPointerMove={moveHeroSpotlight}>
           <div className="hero-grid" aria-hidden="true" />
+          <div className="hero-spotlight" aria-hidden="true" />
           <div className="hero-orb orb-one" aria-hidden="true" />
           <div className="hero-orb orb-two" aria-hidden="true" />
           <div className="hero-inner">
@@ -104,7 +112,7 @@ export default function Home() {
             <h1 id="hero-title"><span className="hero-logo reveal delay-1"><StandardLogo priority /></span><strong className="reveal delay-2">AI 에이전트 시대,</strong><strong className="reveal delay-3">변하지 않는 마케팅의 표준</strong></h1>
             <div className="hero-bottom reveal delay-4">
               <div className="event-meta"><div><small>FORMAT</small><b>온라인 웨비나</b></div><div><small>DATE</small><b>2026. 09. 17 <em>(THU)</em></b></div></div>
-              <a className="button button-primary hero-cta" href="#apply">무료 등록하기 <Arrow /></a>
+              <a className="button button-primary hero-cta" href="#apply">무료 등록하기</a>
             </div>
           </div>
         </section>
@@ -140,7 +148,7 @@ export default function Home() {
             <div className="form-area">
               {status === "success" ? <div className="success-message" role="status"><span>✓</span><p className="section-kicker">REGISTRATION COMPLETE</p><h3>등록이 완료되었습니다.</h3><p>참여 방법은 입력하신 이메일로 안내드릴 예정입니다.<br />2026년 9월 17일(목)에 만나요.</p><button className="button button-light" onClick={() => { setStatus("idle"); setFields(initialFields); }}>다른 참가자 등록하기</button></div> : <form onSubmit={submitForm} noValidate><div className="form-heading"><p>등록 정보</p><span><b>*</b> 필수 입력</span></div><div className="form-grid">
                 {([ ["name", "이름", "이름을 입력해 주세요", "text"], ["company", "회사", "회사명을 입력해 주세요", "text"], ["department", "부서", "부서를 입력해 주세요", "text"], ["position", "직책", "직책을 입력해 주세요", "text"], ["email", "이메일", "name@company.com", "email"], ["phone", "휴대폰번호", "010-0000-0000", "tel"] ] as const).map(([key, label, placeholder, type]) => <label key={key} className={`form-field ${errors[key] ? "has-error" : ""}`}><span>{label} <b>*</b></span><input type={type} placeholder={placeholder} value={fields[key]} onChange={(event) => updateField(key, event.target.value)} aria-invalid={Boolean(errors[key])} />{errors[key] && <small role="alert">{errors[key]}</small>}</label>)}
-              </div><label className={`agreement ${errors.agreement ? "has-error" : ""}`}><input type="checkbox" checked={fields.agreement} onChange={(event) => updateField("agreement", event.target.checked)} /><span><a href={PRIVACY_POLICY_URL} target="_blank" rel="noreferrer">개인정보 수집 및 이용</a>에 동의합니다. <b>(필수)</b></span></label>{errors.agreement && <small className="agree-error" role="alert">{errors.agreement}</small>}<button className="button button-primary submit-button" type="submit" disabled={status === "sending"}>{status === "sending" ? "등록 중입니다..." : <>무료 등록하기 <Arrow /></>}</button>{status === "error" && <p className="submit-error" role="alert">등록 처리에 실패했습니다. 잠시 후 다시 시도해 주세요.</p>}</form>}
+              </div><label className={`agreement ${errors.agreement ? "has-error" : ""}`}><input type="checkbox" checked={fields.agreement} onChange={(event) => updateField("agreement", event.target.checked)} /><span><a href={PRIVACY_POLICY_URL} target="_blank" rel="noreferrer">개인정보 수집 및 이용</a>에 동의합니다. <b>(필수)</b></span></label>{errors.agreement && <small className="agree-error" role="alert">{errors.agreement}</small>}<button className="button button-primary submit-button" type="submit" disabled={status === "sending"}>{status === "sending" ? "등록 중입니다..." : "무료 등록하기"}</button>{status === "error" && <p className="submit-error" role="alert">등록 처리에 실패했습니다. 잠시 후 다시 시도해 주세요.</p>}</form>}
             </div>
           </div>
         </section>
