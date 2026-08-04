@@ -56,6 +56,11 @@ export const eventConfig = {
     },
   ],
 
+  agendaSection: {
+    title: "TIME TABLE",
+    description: "20분씩 이어지는 3개 세션으로 구성됩니다",
+  },
+
   agenda: [
     {
       order: "01",

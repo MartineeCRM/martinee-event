@@ -55,6 +55,11 @@ export const eventConfig = {
     },
   ],
 
+  agendaSection: {
+    title: "TIME TABLE",
+    description: "인사이트와 네트워킹으로 이어지는 저녁의 흐름",
+  },
+
   agenda: [
     {
       order: "01",

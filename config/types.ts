@@ -40,6 +40,11 @@ export interface EventConfig {
     description: string;
   }[];
 
+  agendaSection: {
+    title: string;
+    description: string;
+  };
+
   agenda: {
     order: string;
     title: string;
