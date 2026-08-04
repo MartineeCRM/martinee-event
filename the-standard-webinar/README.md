@@ -21,3 +21,7 @@ npm run dev
 - `app/page.tsx`의 등록 API 연동 TODO
 
 등록 폼은 현재 입력 검증과 완료 화면을 제공하는 데모이며, 개인정보는 저장하지 않습니다.
+
+## 배포 경로
+
+이 프로젝트는 기존 `martinee-event` Next.js 앱의 `/the-standard-webinar` 라우트로 연결되어 있습니다. 기존 앱을 배포하면 해당 경로에서 페이지를 확인할 수 있습니다.
