@@ -7,8 +7,8 @@ export function AgendaSection({ config }: { config: EventConfig }) {
     <section className="bg-background py-16 md:py-24">
       <div className="mx-auto max-w-[1440px] px-[20px] md:px-[64px]">
         <SectionTitle
-          title="TIME TABLE"
-          description="인사이트와 네트워킹으로 이어지는 저녁의 흐름"
+          title={config.agendaSection.title}
+          description={config.agendaSection.description}
         />
 
         <div className="flex flex-col divide-y divide-outline-variant/20 overflow-hidden rounded-xl border border-outline-variant/20">

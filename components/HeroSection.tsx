@@ -1,9 +1,19 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import type { EventConfig } from "@/config/types";
+import { CountdownTimer } from "./CountdownTimer";
 
 export function HeroSection({ config }: { config: EventConfig }) {
   const hostLogos = config.hero.hostLogos.filter((logo) => logo.logoUrl);
+  const { scrollY } = useScroll();
+  const graphicY = useTransform(
+    scrollY,
+    [0, 600],
+    config.hero.parallaxEnabled ? [0, 80] : [0, 0]
+  );
 
   return (
     <section
@@ -11,7 +21,10 @@ export function HeroSection({ config }: { config: EventConfig }) {
       className="relative flex min-h-[85vh] items-end overflow-hidden bg-gradient-to-b from-[#F7F8FF] to-white pb-16 md:pb-24"
     >
       {config.hero.backgroundGraphicUrl ? (
-        <div className="pointer-events-none absolute inset-x-0 top-20 z-0 mx-auto w-full max-w-[1440px] select-none px-[20px] md:px-[64px]">
+        <motion.div
+          style={{ y: graphicY }}
+          className="pointer-events-none absolute inset-x-0 top-20 z-0 mx-auto w-full max-w-[1440px] select-none px-[20px] md:px-[64px]"
+        >
           <Image
             src={config.hero.backgroundGraphicUrl}
             alt=""
@@ -21,11 +34,17 @@ export function HeroSection({ config }: { config: EventConfig }) {
             className="h-auto w-full"
             aria-hidden="true"
           />
-        </div>
+        </motion.div>
       ) : null}
 
       <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[20px] md:px-[64px]">
         <div className="max-w-3xl">
+          {config.hero.seriesLabel ? (
+            <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1 text-label-md font-semibold uppercase tracking-widest text-primary">
+              {config.hero.seriesLabel}
+            </span>
+          ) : null}
+
           {config.hero.titleImageUrl ? (
             <h1 className="mb-8">
               <Image
@@ -69,7 +88,11 @@ export function HeroSection({ config }: { config: EventConfig }) {
             {config.ctaLabel}
           </a>
 
-          {hostLogos.length > 0 ? (
+          {config.hero.countdownTargetAt ? (
+            <CountdownTimer targetDate={config.hero.countdownTargetAt} />
+          ) : null}
+
+          {hostLogos.length > 0 || config.hero.partnerLogos.length > 0 ? (
             <div className="mt-12 flex flex-wrap items-center gap-8">
               {hostLogos.map((logo) => (
                 <Image
@@ -80,6 +103,14 @@ export function HeroSection({ config }: { config: EventConfig }) {
                   height={57}
                   className="h-10 w-auto"
                 />
+              ))}
+              {config.hero.partnerLogos.map((logo) => (
+                <span
+                  key={logo.name}
+                  className="rounded-full border border-outline-variant/40 px-5 py-2 text-label-md font-semibold tracking-wide text-on-surface-variant"
+                >
+                  {logo.name}
+                </span>
               ))}
             </div>
           ) : null}

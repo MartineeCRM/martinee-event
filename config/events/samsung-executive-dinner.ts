@@ -18,11 +18,15 @@ export const eventConfig = {
 
   hero: {
     titleImageUrl: "/images/event-title.png",
+    seriesLabel: null,
     hostLogos: [
       { name: "Martinee", logoUrl: null },
       { name: "Amplitude", logoUrl: null },
     ],
+    partnerLogos: [],
     backgroundGraphicUrl: "/images/hero-graphic.png",
+    parallaxEnabled: false,
+    countdownTargetAt: null,
   },
 
   intro: {
@@ -51,6 +55,11 @@ export const eventConfig = {
         "삼성 그룹 주요 리더들과 함께 AI 시대의 변화와 실행 전략을 논의하는 프라이빗 네트워킹을 제공합니다.",
     },
   ],
+
+  agendaSection: {
+    title: "TIME TABLE",
+    description: "인사이트와 네트워킹으로 이어지는 저녁의 흐름",
+  },
 
   agenda: [
     {
@@ -112,6 +121,7 @@ export const eventConfig = {
     privacyPolicyLinkLabel: "자세히 보기",
     successMessage: "참가 신청이 완료되었습니다. 확인 후 개별 안내드리겠습니다.",
     errorMessage: "신청 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+    showDietaryRestrictions: true,
   },
 
   // 이 행사 전용 Google Apps Script Web App URL (google-apps-script/README.md 참고)
