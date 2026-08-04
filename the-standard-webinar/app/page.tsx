@@ -8,7 +8,7 @@ const PRIVACY_POLICY_URL = "https://martinee.notion.site/7cab6d3779c546fc801f794
 const GAS_WEB_APP_URL = process.env.NEXT_PUBLIC_THE_STANDARD_GAS_WEB_APP_URL;
 
 const navItems = [["행사 소개", "#about"], ["연사", "#speaker"], ["프로그램", "#program"], ["등록", "#apply"]] as const;
-const speakers = ["SPEAKER 01", "SPEAKER 02", "SPEAKER 03"];
+const speakers = [0, 1, 2];
 const timetable = [
   ["01", "시간 미정", "OPENING", "오프닝 세션 제목", "연사 정보는 추후 공개됩니다.", "행사 시작 및 웨비나 안내"],
   ["02", "시간 미정", "SESSION", "세션 제목", "연사 정보는 추후 공개됩니다.", "변화하는 환경에 대한 실무 인사이트"],
@@ -29,8 +29,8 @@ function Arrow() {
   return <span aria-hidden="true" className="arrow">↗</span>;
 }
 
-function StandardLogo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
-  return <Image src="/the-standard-webinar/logo/logo.svg" alt="THE STANDARD" width={1520} height={260} className={`standard-logo ${className}`} priority={priority} />;
+function HostLogoPlaceholder({ className = "" }: { className?: string }) {
+  return <span className={`host-logo-placeholder ${className}`} role="img" aria-label="주최사 로고 이미지 자리">HOST LOGO</span>;
 }
 
 export default function Home() {
@@ -38,7 +38,6 @@ export default function Home() {
   const [fields, setFields] = useState<Fields>(initialFields);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
-  const [repelledGraphic, setRepelledGraphic] = useState<string | null>(null);
   const heroRef = useRef<HTMLElement>(null);
 
   function moveHeroSpotlight(event: PointerEvent<HTMLElement>) {
@@ -46,12 +45,6 @@ export default function Home() {
     const bounds = heroRef.current.getBoundingClientRect();
     heroRef.current.style.setProperty("--spotlight-x", `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
     heroRef.current.style.setProperty("--spotlight-y", `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
-  }
-
-  function repelGraphic(id: string) {
-    if (window.matchMedia("(pointer: fine)").matches && repelledGraphic !== id) {
-      setRepelledGraphic(id);
-    }
   }
 
   function updateField<K extends keyof Fields>(key: K, value: Fields[K]) {
@@ -101,7 +94,7 @@ export default function Home() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="페이지 상단으로 이동"><StandardLogo priority /></a>
+        <a className="brand" href="#top" aria-label="페이지 상단으로 이동"><HostLogoPlaceholder /></a>
         <nav className="desktop-nav" aria-label="주요 메뉴">
           {navItems.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
         </nav>
@@ -110,21 +103,18 @@ export default function Home() {
       </header>
 
       <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
-        <div className="mobile-menu-head"><StandardLogo /><button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기">×</button></div>
+        <div className="mobile-menu-head"><HostLogoPlaceholder /><button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기">×</button></div>
         <nav>{navItems.map(([label, href], index) => <a key={href} href={href} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small>{label}<Arrow /></a>)}</nav>
       </div>
 
       <main id="top">
         <section ref={heroRef} className="hero" aria-labelledby="hero-title" onPointerMove={moveHeroSpotlight}>
-          <div className="hero-grid" aria-hidden="true" />
           <div className="hero-spotlight" aria-hidden="true" />
           <div className="hero-graphics" aria-hidden="true">
             {heroGraphics.map((graphic) => (
               <div
                 key={graphic.id}
-                className={`hero-graphic hero-graphic-${graphic.id} ${repelledGraphic === graphic.id ? "is-repelled" : ""}`}
-                onPointerEnter={() => repelGraphic(graphic.id)}
-                onAnimationEnd={() => setRepelledGraphic((current) => current === graphic.id ? null : current)}
+                className={`hero-graphic hero-graphic-${graphic.id}`}
               >
                 <div className="hero-graphic-float">
                   <Image src={graphic.src} alt="" width={graphic.width} height={graphic.height} sizes="(max-width: 800px) 45vw, 30vw" />
@@ -134,9 +124,9 @@ export default function Home() {
           </div>
           <div className="hero-inner">
             <p className="eyebrow reveal">ONLINE WEBINAR <span>·</span> 2026</p>
-            <h1 id="hero-title"><span className="hero-logo reveal delay-1"><StandardLogo priority /></span><strong className="reveal delay-2">AI 에이전트 시대,</strong><strong className="reveal delay-3">변하지 않는 마케팅의 표준</strong></h1>
+            <h1 id="hero-title"><strong className="reveal delay-1">AI 에이전트 시대,</strong><strong className="reveal delay-2">변하지 않는 마케팅의 표준</strong></h1>
             <div className="hero-bottom reveal delay-4">
-              <div className="event-meta"><div><small>FORMAT</small><b>온라인 웨비나</b></div><div><small>DATE</small><b>2026. 09. 17 <em>(THU)</em></b></div></div>
+              <div className="event-meta"><div><b>온라인 웨비나</b></div><div><b>2026. 09. 17 <em>(THU)</em></b></div></div>
               <a className="button button-primary hero-cta" href="#apply">무료 등록하기</a>
             </div>
           </div>
@@ -155,7 +145,7 @@ export default function Home() {
           <div className="section-index"><span>02</span><span>WHO&apos;S SPEAKING</span></div>
           <div className="title-row observe"><h2>Speaker</h2><p>연사 정보는 순차적으로 공개됩니다.</p></div>
           <div className="speaker-grid">
-            {speakers.map((speaker, index) => <article className="speaker-card observe" key={speaker} style={{ transitionDelay: `${index * 100}ms` }}><div className="speaker-portrait"><span>{speaker}</span><div className="portrait-shape" aria-hidden="true" /></div><div className="speaker-info"><small>연사 정보 준비 중</small><h3>이름 <span>추후 공개</span></h3><p>소속 · 직책 정보가 제공될 예정입니다.</p><div className="topic-line"><span>발표 주제</span><b>세션 주제 준비 중 <Arrow /></b></div></div></article>)}
+            {speakers.map((speaker, index) => <article className="speaker-card observe" key={speaker} style={{ transitionDelay: `${index * 100}ms` }}><div className="speaker-portrait"><div className="portrait-shape" aria-hidden="true" /></div><div className="speaker-info"><h3>이름 <span>추후 공개</span></h3><p>소속 · 직책 정보가 제공될 예정입니다.</p><div className="topic-line"><span>발표 주제</span><b>세션 주제 준비 중 <Arrow /></b></div></div></article>)}
           </div>
         </section>
 
@@ -178,7 +168,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer><div><StandardLogo className="footer-logo" /><p>AI 에이전트 시대, 변하지 않는 마케팅의 표준<br />2026. 09. 17 (THU) · ONLINE WEBINAR</p></div><div className="footer-right"><span className="host-placeholder">HOST LOGO</span><a href="#top">BACK TO TOP ↑</a><small>© 2026 Martinee io. All Rights Reserved</small></div></footer>
+      <footer><div><p>AI 에이전트 시대, 변하지 않는 마케팅의 표준<br />2026. 09. 17 (THU) · ONLINE WEBINAR</p></div><div className="footer-right"><HostLogoPlaceholder className="footer-host-logo" /><a href="#top">BACK TO TOP ↑</a><small>© 2026 Martinee io. All Rights Reserved</small></div></footer>
     </>
   );
 }
