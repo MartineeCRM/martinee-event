@@ -25,6 +25,7 @@ export const eventConfig = {
     ],
     partnerLogos: [],
     backgroundGraphicUrl: "/images/hero-graphic.png",
+    parallaxEnabled: false,
     countdownTargetAt: null,
   },
 

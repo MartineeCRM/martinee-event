@@ -9,7 +9,11 @@ import { CountdownTimer } from "./CountdownTimer";
 export function HeroSection({ config }: { config: EventConfig }) {
   const hostLogos = config.hero.hostLogos.filter((logo) => logo.logoUrl);
   const { scrollY } = useScroll();
-  const graphicY = useTransform(scrollY, [0, 600], [0, 80]);
+  const graphicY = useTransform(
+    scrollY,
+    [0, 600],
+    config.hero.parallaxEnabled ? [0, 80] : [0, 0]
+  );
 
   return (
     <section

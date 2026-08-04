@@ -26,6 +26,8 @@ export interface EventConfig {
     partnerLogos: { name: string }[];
     // Hero 배경에 넣을 장식용 그래픽. null이면 표시 안 함.
     backgroundGraphicUrl: string | null;
+    // backgroundGraphicUrl에 스크롤 패럴랙스 효과를 적용할지 여부.
+    parallaxEnabled: boolean;
     // 웨비나/행사 시작 시각(ISO 8601). null이면 카운트다운을 표시하지 않음.
     countdownTargetAt: string | null;
   };

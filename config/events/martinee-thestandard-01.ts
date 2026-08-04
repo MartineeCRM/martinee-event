@@ -26,6 +26,7 @@ export const eventConfig = {
       { name: "Braze" },
     ],
     backgroundGraphicUrl: "/images/hero-graphic.png",
+    parallaxEnabled: true,
     countdownTargetAt: "2026-09-17T00:00:00+09:00",
   },
 
