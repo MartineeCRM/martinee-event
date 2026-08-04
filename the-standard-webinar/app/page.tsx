@@ -14,6 +14,12 @@ const timetable = [
   ["02", "시간 미정", "SESSION", "세션 제목", "연사 정보는 추후 공개됩니다.", "변화하는 환경에 대한 실무 인사이트"],
   ["03", "시간 미정", "TALK", "토크 세션 제목", "연사 정보는 추후 공개됩니다.", "질문과 대화로 이어지는 마무리"],
 ];
+const heroGraphics = [
+  { id: "amplitude", src: "/the-standard-webinar/hero/Amplitude.png", width: 689, height: 670 },
+  { id: "appsflyer", src: "/the-standard-webinar/hero/AppsFlyer.png", width: 695, height: 625 },
+  { id: "braze", src: "/the-standard-webinar/hero/Braze.png", width: 1854, height: 848 },
+  { id: "martinee", src: "/the-standard-webinar/hero/Martinee.png", width: 1254, height: 1254 },
+] as const;
 
 const initialFields = { name: "", company: "", department: "", position: "", email: "", phone: "", agreement: false };
 type Fields = typeof initialFields;
@@ -32,6 +38,7 @@ export default function Home() {
   const [fields, setFields] = useState<Fields>(initialFields);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [repelledGraphic, setRepelledGraphic] = useState<string | null>(null);
   const heroRef = useRef<HTMLElement>(null);
 
   function moveHeroSpotlight(event: PointerEvent<HTMLElement>) {
@@ -39,6 +46,12 @@ export default function Home() {
     const bounds = heroRef.current.getBoundingClientRect();
     heroRef.current.style.setProperty("--spotlight-x", `${((event.clientX - bounds.left) / bounds.width) * 100}%`);
     heroRef.current.style.setProperty("--spotlight-y", `${((event.clientY - bounds.top) / bounds.height) * 100}%`);
+  }
+
+  function repelGraphic(id: string) {
+    if (window.matchMedia("(pointer: fine)").matches && repelledGraphic !== id) {
+      setRepelledGraphic(id);
+    }
   }
 
   function updateField<K extends keyof Fields>(key: K, value: Fields[K]) {
@@ -105,8 +118,20 @@ export default function Home() {
         <section ref={heroRef} className="hero" aria-labelledby="hero-title" onPointerMove={moveHeroSpotlight}>
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-spotlight" aria-hidden="true" />
-          <div className="hero-orb orb-one" aria-hidden="true" />
-          <div className="hero-orb orb-two" aria-hidden="true" />
+          <div className="hero-graphics" aria-hidden="true">
+            {heroGraphics.map((graphic) => (
+              <div
+                key={graphic.id}
+                className={`hero-graphic hero-graphic-${graphic.id} ${repelledGraphic === graphic.id ? "is-repelled" : ""}`}
+                onPointerEnter={() => repelGraphic(graphic.id)}
+                onAnimationEnd={() => setRepelledGraphic((current) => current === graphic.id ? null : current)}
+              >
+                <div className="hero-graphic-float">
+                  <Image src={graphic.src} alt="" width={graphic.width} height={graphic.height} sizes="(max-width: 800px) 45vw, 30vw" />
+                </div>
+              </div>
+            ))}
+          </div>
           <div className="hero-inner">
             <p className="eyebrow reveal">ONLINE WEBINAR <span>·</span> 2026</p>
             <h1 id="hero-title"><span className="hero-logo reveal delay-1"><StandardLogo priority /></span><strong className="reveal delay-2">AI 에이전트 시대,</strong><strong className="reveal delay-3">변하지 않는 마케팅의 표준</strong></h1>
