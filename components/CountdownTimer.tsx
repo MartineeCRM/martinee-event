@@ -26,21 +26,57 @@ function getTimeLeft(targetDate: string): TimeLeft | null {
 }
 
 export function CountdownTimer({ targetDate }: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(() =>
-    getTimeLeft(targetDate)
+  // undefined = not yet computed (same on server and first client render, before hydration)
+  // null = computed, but the target date has passed
+  // TimeLeft = computed, live countdown
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null | undefined>(
+    undefined
   );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft(getTimeLeft(targetDate));
-    }, 1000);
-    return () => clearInterval(interval);
+    // Schedule the first tick asynchronously (rather than calling setState
+    // synchronously in the effect body) to avoid cascading renders — see
+    // react-hooks/set-state-in-effect. This still resolves on the next
+    // microtask/macrotask turn, well before the user notices.
+    const tick = () => setTimeLeft(getTimeLeft(targetDate));
+    const initial = setTimeout(tick, 0);
+    const interval = setInterval(tick, 1000);
+    return () => {
+      clearTimeout(initial);
+      clearInterval(interval);
+    };
   }, [targetDate]);
+
+  if (timeLeft === undefined) {
+    // Same markup on server and on first client render, before hydration —
+    // avoids a hydration mismatch. Swapped for the real value once the
+    // interval above ticks for the first time.
+    return (
+      <div
+        className="mt-10 grid grid-cols-4 gap-3 md:flex md:gap-4"
+        aria-hidden="true"
+      >
+        {["일", "시간", "분", "초"].map((label) => (
+          <div
+            key={label}
+            className="flex flex-col items-center rounded-xl border border-outline-variant/30 bg-surface px-3 py-3 md:px-5 md:py-4"
+          >
+            <span className="text-headline-md font-bold text-primary md:text-headline-lg">
+              --
+            </span>
+            <span className="text-label-sm text-on-surface-variant">
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   if (timeLeft === null) {
     return (
       <p className="mt-10 text-body-md text-on-surface-variant">
-        웨비나가 곧 시작되거나 이미 진행되었습니다.
+        웨비나 당일입니다. 등록해주시면 참여 링크를 안내드립니다.
       </p>
     );
   }
