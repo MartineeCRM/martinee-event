@@ -2,6 +2,8 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
+import Image from "next/image";
+import standardLogo from "../logo/logo.svg";
 
 const PRIVACY_POLICY_URL = "https://martinee.notion.site/7cab6d3779c546fc801f79415646c03c";
 const GAS_WEB_APP_URL = process.env.NEXT_PUBLIC_THE_STANDARD_GAS_WEB_APP_URL;
@@ -22,8 +24,8 @@ function Arrow() {
   return <span aria-hidden="true" className="arrow">↗</span>;
 }
 
-function StandardLogoPlaceholder({ className = "" }: { className?: string }) {
-  return <span className={`standard-logo-placeholder ${className}`} role="img" aria-label="THE STANDARD 이미지 로고 자리">LOGO IMAGE</span>;
+function StandardLogo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
+  return <Image src={standardLogo} alt="THE STANDARD" className={`standard-logo ${className}`} priority={priority} />;
 }
 
 export default function Home() {
@@ -79,7 +81,7 @@ export default function Home() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="페이지 상단으로 이동"><StandardLogoPlaceholder /></a>
+        <a className="brand" href="#top" aria-label="페이지 상단으로 이동"><StandardLogo priority /></a>
         <nav className="desktop-nav" aria-label="주요 메뉴">
           {navItems.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
         </nav>
@@ -88,7 +90,7 @@ export default function Home() {
       </header>
 
       <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
-        <div className="mobile-menu-head"><StandardLogoPlaceholder /><button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기">×</button></div>
+        <div className="mobile-menu-head"><StandardLogo /><button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기">×</button></div>
         <nav>{navItems.map(([label, href], index) => <a key={href} href={href} onClick={() => setMenuOpen(false)}><small>0{index + 1}</small>{label}<Arrow /></a>)}</nav>
       </div>
 
@@ -99,7 +101,7 @@ export default function Home() {
           <div className="hero-orb orb-two" aria-hidden="true" />
           <div className="hero-inner">
             <p className="eyebrow reveal">ONLINE WEBINAR <span>·</span> 2026</p>
-            <h1 id="hero-title"><span className="hero-logo reveal delay-1"><StandardLogoPlaceholder /></span><strong className="reveal delay-2">AI 에이전트 시대,</strong><strong className="reveal delay-3">변하지 않는 마케팅의 표준</strong></h1>
+            <h1 id="hero-title"><span className="hero-logo reveal delay-1"><StandardLogo priority /></span><strong className="reveal delay-2">AI 에이전트 시대,</strong><strong className="reveal delay-3">변하지 않는 마케팅의 표준</strong></h1>
             <div className="hero-bottom reveal delay-4">
               <div className="event-meta"><div><small>FORMAT</small><b>온라인 웨비나</b></div><div><small>DATE</small><b>2026. 09. 17 <em>(THU)</em></b></div></div>
               <a className="button button-primary hero-cta" href="#apply">무료 등록하기 <Arrow /></a>
@@ -143,7 +145,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer><div><StandardLogoPlaceholder className="footer-logo" /><p>AI 에이전트 시대, 변하지 않는 마케팅의 표준<br />2026. 09. 17 (THU) · ONLINE WEBINAR</p></div><div className="footer-right"><span className="host-placeholder">HOST LOGO</span><a href="#top">BACK TO TOP ↑</a><small>© 2026 Martinee io. All Rights Reserved</small></div></footer>
+      <footer><div><StandardLogo className="footer-logo" /><p>AI 에이전트 시대, 변하지 않는 마케팅의 표준<br />2026. 09. 17 (THU) · ONLINE WEBINAR</p></div><div className="footer-right"><span className="host-placeholder">HOST LOGO</span><a href="#top">BACK TO TOP ↑</a><small>© 2026 Martinee io. All Rights Reserved</small></div></footer>
     </>
   );
 }
