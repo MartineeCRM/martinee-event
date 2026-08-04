@@ -163,18 +163,20 @@ export function RegistrationForm({ config }: { config: EventConfig }) {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className={labelClass} htmlFor="dietaryRestrictions">
-                  식이 제한 / 알레르기
-                </label>
-                <input
-                  id="dietaryRestrictions"
-                  type="text"
-                  placeholder="예: 없음, 채식, 특정 알레르기 등"
-                  className={fieldClass}
-                  {...register("dietaryRestrictions")}
-                />
-              </div>
+              {config.registration.showDietaryRestrictions ? (
+                <div className="flex flex-col gap-2">
+                  <label className={labelClass} htmlFor="dietaryRestrictions">
+                    식이 제한 / 알레르기
+                  </label>
+                  <input
+                    id="dietaryRestrictions"
+                    type="text"
+                    placeholder="예: 없음, 채식, 특정 알레르기 등"
+                    className={fieldClass}
+                    {...register("dietaryRestrictions")}
+                  />
+                </div>
+              ) : null}
 
               <div className="flex flex-col gap-2">
                 <label className={labelClass} htmlFor="message">
