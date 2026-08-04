@@ -20,7 +20,7 @@ npm run dev
 - 주최사 로고
 - `app/page.tsx`의 등록 API 연동 TODO
 
-등록 폼은 현재 입력 검증과 완료 화면을 제공하는 데모이며, 개인정보는 저장하지 않습니다.
+Google Apps Script URL이 설정되기 전에는 등록 폼이 제출 오류 상태를 보여 줍니다. 실제 Google Sheets 연동과 배포 방법은 [google-apps-script/README.md](./google-apps-script/README.md)를 참고하세요.
 
 ## 배포 경로
 
